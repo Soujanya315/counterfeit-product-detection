@@ -28,3 +28,8 @@ Logo_CNN_Training/dataset/
 # IDE
 .vscode/
 .idea/
+# CNN generated images
+Logo_CNN_Training/genLogoOutput/
+
+# Django verifier dataset
+major project/qrverify/verifier/dataset/
