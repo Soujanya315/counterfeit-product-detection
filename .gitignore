@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Django
+db.sqlite3
+staticfiles/
+media/
+
+# Virtual Environment
+venv/
+env/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# ML / CNN
+Logo_CNN_Training/dataset/
+*.h5
+*.pt
+
+# IDE
+.vscode/
+.idea/

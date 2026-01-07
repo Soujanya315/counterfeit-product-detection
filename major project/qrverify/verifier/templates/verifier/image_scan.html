@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Verification</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: rgba(0,0,0,0.75);
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            text-align: center;
+            width: 400px;
+            color: #fff;
+        }
+        h2 {
+            margin-bottom: 25px;
+            font-size: 24px;
+        }
+        input[type="file"] {
+            margin: 20px 0;
+            padding: 8px;
+            border-radius: 8px;
+            border: none;
+            width: 100%;
+        }
+        button {
+            background-color: #2575fc;
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #6a11cb;
+        }
+        #result {
+            margin-top: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 12px;
+            border-radius: 10px;
+        }
+        .success {
+            background: rgba(0, 255, 128, 0.2);
+            color: #00ff80;
+        }
+        .fail {
+            background: rgba(255, 76, 76, 0.2);
+            color: #ff4c4c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Product Image Verification</h2>
+        <form id="verifyForm" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="product_image" accept="image/*" required><br>
+            <button type="submit">Verify Image</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('verifyForm');
+        const resultDiv = document.getElementById('result');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            resultDiv.className = "";
+            resultDiv.innerHTML = "⏳ Verifying...";
+
+            const formData = new FormData(form);
+
+            fetch("{% url 'verify_image' %}", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}'
+                }
+            })
+            .then(response => response.text())
+            .then(data => {
+                if (data.includes("Genuine")) {
+                    resultDiv.className = "success";
+                } else if (data.includes("Counterfeit")) {
+                    resultDiv.className = "fail";
+                } else {
+                    resultDiv.className = "";
+                }
+                resultDiv.innerHTML = data;
+            })
+            .catch(err => {
+                resultDiv.className = "fail";
+                resultDiv.innerHTML = "⚠️ Error: " + err;
+            });
+        });
+    </script>
+</body>
+</html>

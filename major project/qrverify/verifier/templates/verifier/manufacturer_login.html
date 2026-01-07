@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manufacturer Login</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #FFDEE9, #B5FFFC);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial;
+        }
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Manufacturer Login</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="Enter your name" required><br>
+            <input type="password" name="password" placeholder="Enter password" required><br>
+            <button type="submit">Login</button>
+        </form>
+        {% if error %}
+            <p style="color:red;">{{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

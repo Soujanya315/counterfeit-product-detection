@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register Product</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+      padding: 40px 20px;
+      margin: 0;
+    }
+
+    h1 {
+      color: white;
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 32px;
+      font-weight: bold;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+      max-width: 450px;
+      width: 100%;
+      text-align: center;
+      animation: fadeIn 0.7s ease-in-out;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      width: 100%;
+    }
+
+    button {
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #2a5298;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background: #1e3c72;
+    }
+
+    #message {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #333;
+      word-wrap: break-word;
+    }
+
+    a.tx-link {
+      color: #2a5298;
+      text-decoration: underline;
+    }
+
+    a.tx-link:hover {
+      color: #1e3c72;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+
+<h1>SmartSeal: Register Product</h1>
+
+<div class="card">
+  <form id="registerForm" method="post">
+    {% csrf_token %}
+    <input type="text" name="product_id" placeholder="Product ID" required />
+    <input type="text" name="cid" placeholder="IPFS CID" required />
+    <input type="text" name="issuer" placeholder="Issuer/Brand" required />
+    <button type="submit">Register Product</button>
+  </form>
+
+  <div id="message">
+    {% if message %}
+      {{ message|safe }}
+    {% endif %}
+  </div>
+
+  <!-- Dynamic Go Back Button -->
+  <form method="get" action="{{ dashboard_url }}">
+    <button type="submit">Go Back to Dashboard</button>
+  </form>
+</div>
+
+</body>
+</html>

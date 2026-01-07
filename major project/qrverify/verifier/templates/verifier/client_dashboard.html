@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Client Dashboard</title>
+    <style>
+        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .header {
+            width: 100%;
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+            background: #2575fc;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+        }
+        .container {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 380px;
+        }
+        h2 { color: #2a5298; margin-bottom: 20px; }
+        .logo { width: 80px; margin-bottom: 20px; }
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #2a5298;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover { background: #1e3c72; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    SmartSeal: Client Dashboard
+</div>
+
+<div class="container">
+    <div class="card">
+        <img src="https://img.icons8.com/ios-filled/100/2a5298/qr-code.png" class="logo" alt="QR Icon">
+        <h2>QR Verification</h2>
+        <p>Scan and verify product QR codes securely.</p>
+        <a href="{% url 'qr_scan' %}"><button>Go to QR Scan</button></a>
+    </div>
+
+    <div class="card">
+        <img src="https://img.icons8.com/ios-filled/100/2a5298/product.png" class="logo" alt="Product Icon">
+        <h2>Image Verification</h2>
+        <p>Upload product images to verify authenticity using AI.</p>
+        <a href="{% url 'image_scan' %}"><button>Go to Image Scan</button></a>
+    </div>
+
+    <div class="card">
+        <img src="https://img.icons8.com/ios-filled/100/2a5298/artificial-intelligence.png" class="logo" alt="AI Icon">
+        <h2>QR + Image Verification</h2>
+        <p>Upload both QR and product image for full blockchain + AI verification.</p>
+        <a href="{% url 'verify_combined' %}"><button>Go to Combined Scan</button></a>
+    </div>
+</div>
+<!-- Footer with Logout -->
+<div class="footer">
+    <a href="{% url 'login_selection' %}">
+        <button class="logout-btn">← Back to Login</button>
+    </a>
+</div>
+
+</body>
+</html>

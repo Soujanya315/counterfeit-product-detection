@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Portal</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        button {
+            background: #007BFF;
+            color: white;
+            padding: 12px 25px;
+            margin: 10px;
+            border: none;
+            border-radius: 15px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Select Login Type</h1>
+        <button onclick="window.location.href='/client_login/'">Client Login</button>
+        <button onclick="window.location.href='/manufacturer_login/'">Manufacturer Login</button>
+    </div>
+</body>
+</html>
